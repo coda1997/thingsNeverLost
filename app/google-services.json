@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "208483535576",
+    "firebase_url": "https://thingsneverlost.firebaseio.com",
+    "project_id": "thingsneverlost",
+    "storage_bucket": "thingsneverlost.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208483535576:android:dda134efe6f59bf9",
+        "android_client_info": {
+          "package_name": "com.example.overl.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208483535576-csph8vipq5dqd6rpf2bbqq8a5u24s7mq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIHFodNGIoE9i9GjCiBp2DxFbw979wpBE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
