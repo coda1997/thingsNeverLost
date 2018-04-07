@@ -2,6 +2,7 @@ package com.example.overl.myapplication
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import org.jetbrains.anko.activityManager
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,4 +22,6 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("com.example.overl.myapplication", appContext.packageName)
     }
+
+
 }
