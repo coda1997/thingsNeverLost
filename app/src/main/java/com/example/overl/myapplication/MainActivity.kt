@@ -18,8 +18,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
+import com.example.overl.myapplication.bean.User
 import com.mob.MobSDK
 import org.jetbrains.anko.startActivity
+import retrofit2.Retrofit
 
 
 class MainActivity : Activity(), View.OnClickListener {
@@ -88,6 +90,11 @@ class MainActivity : Activity(), View.OnClickListener {
             override fun afterEvent(event: Int, result: Int, data: Any?) {
                 if (result== SMSSDK.RESULT_COMPLETE){
                     Log.d("submit code","succeed")
+//                    val retrofit2 = Retrofit.Builder().baseUrl("???").build()
+//                    val service = retrofit2?.create(CreateUser::class.java)
+//                    service?.createUser(User("1",12,"110","/#"))
+
+
                     startActivity<NewActivity>("phone" to phoneNumber)
                 }else{
                     Log.d("submit code","failed result $result data $data")
@@ -115,16 +122,12 @@ class MainActivity : Activity(), View.OnClickListener {
         set.playTogether(animator, animator2)
         set.start()
         set.addListener(object : Animator.AnimatorListener {
-
             override fun onAnimationStart(animation: Animator) {
-
             }
 
             override fun onAnimationRepeat(animation: Animator) {
                 // TODO Auto-generated method stub
-
             }
-
             override fun onAnimationEnd(animation: Animator) {
 
                 progress.visibility = View.VISIBLE
@@ -136,7 +139,6 @@ class MainActivity : Activity(), View.OnClickListener {
 
             override fun onAnimationCancel(animation: Animator) {
                 // TODO Auto-generated method stub
-
             }
         })
 
