@@ -19,8 +19,14 @@ import android.widget.TextView
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
 import com.example.overl.myapplication.bean.User
+import com.example.overl.myapplication.bean.loginInfo
 import com.mob.MobSDK
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.startActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 
 
@@ -90,11 +96,18 @@ class MainActivity : Activity(), View.OnClickListener {
             override fun afterEvent(event: Int, result: Int, data: Any?) {
                 if (result== SMSSDK.RESULT_COMPLETE){
                     Log.d("submit code","succeed")
-//                    val retrofit2 = Retrofit.Builder().baseUrl("???").build()
-//                    val service = retrofit2?.create(CreateUser::class.java)
-//                    service?.createUser(User("1",12,"110","/#"))
+                    val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).build()
+                    val service = retrofit2?.create(CreateUser::class.java)
+                    val call = service?.createUser(User(password = "123456",phone = phoneNumber).loginInfo())
+                    call?.enqueue(object :Callback<String>{
+                        override fun onFailure(call: Call<String>?, t: Throwable?) {
+                            Log.d("login","fail")
+                        }
+                        override fun onResponse(call: Call<String>?, response: Response<String>?) {
+                            Log.d("login","success ${response?.body()}")
+                        }
 
-
+                    })
                     startActivity<NewActivity>("phone" to phoneNumber)
                 }else{
                     Log.d("submit code","failed result $result data $data")

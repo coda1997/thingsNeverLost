@@ -1,4 +1,8 @@
 package com.example.overl.myapplication.bean
 
 
-data class User(val password:String,val age:Int,val phone:String,val pictureUrl:String)
+data class User(val password:String,val phone:String,val age:Int=0,val pictureUrl:String="")
+
+fun User.loginInfo():String{
+    return "password: $password\nphone $phone"
+}
