@@ -20,10 +20,9 @@ import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
 import com.example.overl.myapplication.NewActivity
 import com.example.overl.myapplication.R
-import com.example.overl.myapplication.bean.ResponseUser
-import com.example.overl.myapplication.bean.User
+import com.example.overl.myapplication.bean.ResponseWithoutData
 import com.example.overl.myapplication.map.JellyInterpolator
-import com.example.overl.myapplication.service.CreateUser
+import com.example.overl.myapplication.service.MyService
 import com.mob.MobSDK
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -113,15 +112,15 @@ class MainActivity : Activity(), View.OnClickListener {
     }
     private fun register( phone:String, pwd:String){
         val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
-        val service = retrofit2?.create(CreateUser::class.java)
+        val service = retrofit2?.create(MyService::class.java)
         val call = service?.createUser(phone,"123456")
-        call?.enqueue(object : Callback<ResponseUser> {
-            override fun onFailure(call: Call<ResponseUser>?, t: Throwable?) {
+        call?.enqueue(object : Callback<ResponseWithoutData> {
+            override fun onFailure(call: Call<ResponseWithoutData>?, t: Throwable?) {
                 Log.d("login","fail ${t.toString()}")
             }
-            override fun onResponse(call: Call<ResponseUser>?, response: Response<ResponseUser>?) {
+            override fun onResponse(call: Call<ResponseWithoutData>?, response: Response<ResponseWithoutData>?) {
                 Log.d("login", "succeed ${response?.body().toString()}")
-//                startActivity<NewActivity>("user" to (response?.body() as ResponseUser).data)
+//                startActivity<NewActivity>("user" to (response?.body() as ResponseWithoutData).data)
             }
         })
         startActivity<NewActivity>("user" to phone)

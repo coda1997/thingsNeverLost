@@ -25,7 +25,7 @@ class PostFragment: Fragment() {
         val postFind = view?.find<Button>(R.id.bt_post_find)
         val postLost = view?.find<Button>(R.id.bt_post_lost)
         postFind?.onClick {
-            startActivity<PostFindActivity>()
+            startActivity<PostFindActivity>("userid" to 1)
         }
         postLost?.onClick {
             startActivity<PostLostActivity>()
