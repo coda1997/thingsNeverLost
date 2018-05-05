@@ -1,13 +1,14 @@
 package com.example.overl.myapplication
 
-import android.app.Activity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.Window
 import android.widget.LinearLayout
+import com.example.overl.myapplication.map.MapFragment
+import com.example.overl.myapplication.my.MyFragment
+import com.example.overl.myapplication.post.PostFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
@@ -17,9 +18,9 @@ import org.jetbrains.anko.sdk25.coroutines.onClick
 class NewActivity:FragmentActivity(){
     private var phoneNumber:String=""
 
-    lateinit var mapFragment:MapFragment
-    lateinit var postFragment:PostFragment
-    lateinit var myFragment:MyFragment
+    lateinit var mapFragment: MapFragment
+    lateinit var postFragment: PostFragment
+    lateinit var myFragment: MyFragment
     private lateinit var container:LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +42,9 @@ class NewActivity:FragmentActivity(){
     }
     private fun initFragment() {
         container=findViewById(R.id.layout_fragment)
-        mapFragment=MapFragment(this)
-        postFragment=PostFragment()
-        myFragment=MyFragment()
+        mapFragment= MapFragment(this)
+        postFragment= PostFragment()
+        myFragment= MyFragment()
         supportFragmentManager.beginTransaction().add(container.id,mapFragment).add(container.id,myFragment).add(container.id,postFragment).commit()
 
     }

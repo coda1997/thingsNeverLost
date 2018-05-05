@@ -6,3 +6,5 @@ data class User(val password:String,val phone:String,val age:Int=0,val pictureUr
 fun User.loginInfo():String{
     return "password: $password\nphone $phone"
 }
+
+data class ResponseUser(val code:Int,val msg:String,val data:User)

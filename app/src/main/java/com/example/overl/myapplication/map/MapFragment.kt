@@ -1,19 +1,14 @@
-package com.example.overl.myapplication
+package com.example.overl.myapplication.map
 
 import android.annotation.SuppressLint
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.v4.app.FragmentActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tencent.tencentmap.mapsdk.maps.SupportMapFragment
-import com.tencent.tencentmap.mapsdk.maps.TencentMap
-import org.jetbrains.anko.support.v4.find
 
 /**
  * Created by overl on 2018/4/8.

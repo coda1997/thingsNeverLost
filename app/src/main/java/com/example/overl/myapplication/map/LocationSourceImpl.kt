@@ -1,4 +1,4 @@
-package com.example.overl.myapplication
+package com.example.overl.myapplication.map
 
 import android.content.Context
 import android.location.Location

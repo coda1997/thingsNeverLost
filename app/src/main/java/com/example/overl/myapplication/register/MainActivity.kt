@@ -1,4 +1,4 @@
-package com.example.overl.myapplication
+package com.example.overl.myapplication.register
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -18,17 +18,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
+import com.example.overl.myapplication.NewActivity
+import com.example.overl.myapplication.R
+import com.example.overl.myapplication.bean.ResponseUser
 import com.example.overl.myapplication.bean.User
-import com.example.overl.myapplication.bean.loginInfo
-import com.google.gson.Gson
+import com.example.overl.myapplication.map.JellyInterpolator
+import com.example.overl.myapplication.service.CreateUser
 import com.mob.MobSDK
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : Activity(), View.OnClickListener {
@@ -76,7 +78,9 @@ class MainActivity : Activity(), View.OnClickListener {
             sendCode(eName.text.toString())
         } else {
             submitCode(eName.text.toString(), ePwd.text.toString())
+
         }
+        //   register(eName.text.toString(),"12345678")
         inputAnimator(mInputLayout, mWidth, mHeight)
 
     }
@@ -99,26 +103,28 @@ class MainActivity : Activity(), View.OnClickListener {
             override fun afterEvent(event: Int, result: Int, data: Any?) {
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     Log.d("submit code", "succeed")
-//                    val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).addConverterFactory().build()
-//                    val service = retrofit2?.create(CreateUser::class.java)
-//                    val call = service?.createUser(phoneNumber,"123456")
-//                    call?.enqueue(object :Callback<User>{
-//                        override fun onFailure(call: Call<User>?, t: Throwable?) {
-//                            Log.d("login","fail")
-//                        }
-//                        override fun onResponse(call: Call<User>?, response: Response<User>?) {
-//                            Log.d("login","success ${response?.body()}")
-//
-//                        }
-//
-//                    })
-                    startActivity<NewActivity>("phone" to phoneNumber)
+                    register(phoneNumber,"12345678")
                 } else {
                     Log.d("submit code", "failed result $result data $data")
                 }
             }
         })
         SMSSDK.submitVerificationCode("86", phoneNumber, code)
+    }
+    private fun register( phone:String, pwd:String){
+        val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit2?.create(CreateUser::class.java)
+        val call = service?.createUser(phone,"123456")
+        call?.enqueue(object : Callback<ResponseUser> {
+            override fun onFailure(call: Call<ResponseUser>?, t: Throwable?) {
+                Log.d("login","fail ${t.toString()}")
+            }
+            override fun onResponse(call: Call<ResponseUser>?, response: Response<ResponseUser>?) {
+                Log.d("login", "succeed ${response.toString()}")
+//                startActivity<NewActivity>("user" to (response?.body() as ResponseUser).data)
+            }
+        })
+        startActivity<NewActivity>("user" to phone)
     }
 
     private fun inputAnimator(view: View?, w: Float, h: Float) {
