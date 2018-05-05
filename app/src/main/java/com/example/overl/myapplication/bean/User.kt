@@ -7,4 +7,4 @@ fun User.loginInfo():String{
     return "password: $password\nphone $phone"
 }
 
-data class ResponseUser(val code:Int,val msg:String,val data:User)
+data class ResponseUser(val code:Int,val msg:String)

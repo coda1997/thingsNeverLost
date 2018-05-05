@@ -73,14 +73,14 @@ class MainActivity : Activity(), View.OnClickListener {
         mName.visibility = View.INVISIBLE
         mPsw.visibility = View.INVISIBLE
 
-        if (counter++ == 0) {
-
-            sendCode(eName.text.toString())
-        } else {
-            submitCode(eName.text.toString(), ePwd.text.toString())
-
-        }
-        //   register(eName.text.toString(),"12345678")
+//        if (counter++ == 0) {
+//
+//            sendCode(eName.text.toString())
+//        } else {
+//            submitCode(eName.text.toString(), ePwd.text.toString())
+//
+//        }
+           register(eName.text.toString(),"12345678")
         inputAnimator(mInputLayout, mWidth, mHeight)
 
     }
@@ -120,7 +120,7 @@ class MainActivity : Activity(), View.OnClickListener {
                 Log.d("login","fail ${t.toString()}")
             }
             override fun onResponse(call: Call<ResponseUser>?, response: Response<ResponseUser>?) {
-                Log.d("login", "succeed ${response.toString()}")
+                Log.d("login", "succeed ${response?.body().toString()}")
 //                startActivity<NewActivity>("user" to (response?.body() as ResponseUser).data)
             }
         })

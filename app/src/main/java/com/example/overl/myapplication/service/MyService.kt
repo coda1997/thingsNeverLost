@@ -9,7 +9,7 @@ import retrofit2.http.*
  * Created by overl on 2018/4/7.
  */
 interface CreateUser{
-    @POST("register")
+    @POST("user/register")
     @FormUrlEncoded
     fun createUser(@Field("phone") phone:String,@Field("password") password:String ): Call<ResponseUser>
     @POST("user/login")
