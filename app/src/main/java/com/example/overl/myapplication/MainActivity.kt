@@ -20,6 +20,7 @@ import cn.smssdk.EventHandler
 import cn.smssdk.SMSSDK
 import com.example.overl.myapplication.bean.User
 import com.example.overl.myapplication.bean.loginInfo
+import com.google.gson.Gson
 import com.mob.MobSDK
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
@@ -40,8 +41,8 @@ class MainActivity : Activity(), View.OnClickListener {
 
     private lateinit var mName: LinearLayout
     private lateinit var mPsw: LinearLayout
-    private lateinit var eName:EditText
-    private lateinit var ePwd:EditText
+    private lateinit var eName: EditText
+    private lateinit var ePwd: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +59,10 @@ class MainActivity : Activity(), View.OnClickListener {
         mName = findViewById(R.id.input_layout_name)
         mPsw = findViewById(R.id.input_layout_psw)
         eName = findViewById(R.id.edit_text_name)
-        ePwd= findViewById(R.id.edit_view_pwd)
+        ePwd = findViewById(R.id.edit_view_pwd)
         mBtnLogin.setOnClickListener(this)
     }
+
     private var counter = 0
     override fun onClick(v: View) {
         val mWidth = mBtnLogin.measuredWidth.toFloat()
@@ -69,52 +71,54 @@ class MainActivity : Activity(), View.OnClickListener {
         mName.visibility = View.INVISIBLE
         mPsw.visibility = View.INVISIBLE
 
-        if (counter++==0){
+        if (counter++ == 0) {
 
             sendCode(eName.text.toString())
-        }else{
-            submitCode(eName.text.toString(),ePwd.text.toString())
+        } else {
+            submitCode(eName.text.toString(), ePwd.text.toString())
         }
         inputAnimator(mInputLayout, mWidth, mHeight)
 
     }
-    private fun sendCode(phoneNumber:String){
+
+    private fun sendCode(phoneNumber: String) {
         SMSSDK.registerEventHandler(object : EventHandler() {
             override fun afterEvent(event: Int, result: Int, data: Any?) {
-                if (result==SMSSDK.RESULT_COMPLETE){
-                    Log.d("sendCode","Succeed")
-                }else{
-                    Log.d("sendCode","Failed result $result data $data")
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    Log.d("sendCode", "Succeed")
+                } else {
+                    Log.d("sendCode", "Failed result $result data $data")
                 }
             }
         })
-        SMSSDK.getVerificationCode("86",phoneNumber)
+        SMSSDK.getVerificationCode("86", phoneNumber)
     }
 
-    private fun submitCode(phoneNumber: String,code:String){
-        SMSSDK.registerEventHandler(object : EventHandler(){
+    private fun submitCode(phoneNumber: String, code: String) {
+        SMSSDK.registerEventHandler(object : EventHandler() {
             override fun afterEvent(event: Int, result: Int, data: Any?) {
-                if (result== SMSSDK.RESULT_COMPLETE){
-                    Log.d("submit code","succeed")
-                    val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).build()
-                    val service = retrofit2?.create(CreateUser::class.java)
-                    val call = service?.createUser(User(password = "123456",phone = phoneNumber).loginInfo())
-                    call?.enqueue(object :Callback<String>{
-                        override fun onFailure(call: Call<String>?, t: Throwable?) {
-                            Log.d("login","fail")
-                        }
-                        override fun onResponse(call: Call<String>?, response: Response<String>?) {
-                            Log.d("login","success ${response?.body()}")
-                        }
-
-                    })
+                if (result == SMSSDK.RESULT_COMPLETE) {
+                    Log.d("submit code", "succeed")
+//                    val retrofit2 = Retrofit.Builder().baseUrl(getString(R.string.base_url)).addConverterFactory().build()
+//                    val service = retrofit2?.create(CreateUser::class.java)
+//                    val call = service?.createUser(phoneNumber,"123456")
+//                    call?.enqueue(object :Callback<User>{
+//                        override fun onFailure(call: Call<User>?, t: Throwable?) {
+//                            Log.d("login","fail")
+//                        }
+//                        override fun onResponse(call: Call<User>?, response: Response<User>?) {
+//                            Log.d("login","success ${response?.body()}")
+//
+//                        }
+//
+//                    })
                     startActivity<NewActivity>("phone" to phoneNumber)
-                }else{
-                    Log.d("submit code","failed result $result data $data")
+                } else {
+                    Log.d("submit code", "failed result $result data $data")
                 }
             }
         })
-        SMSSDK.submitVerificationCode("86",phoneNumber,code)
+        SMSSDK.submitVerificationCode("86", phoneNumber, code)
     }
 
     private fun inputAnimator(view: View?, w: Float, h: Float) {
@@ -141,6 +145,7 @@ class MainActivity : Activity(), View.OnClickListener {
             override fun onAnimationRepeat(animation: Animator) {
                 // TODO Auto-generated method stub
             }
+
             override fun onAnimationEnd(animation: Animator) {
 
                 progress.visibility = View.VISIBLE
@@ -166,6 +171,7 @@ class MainActivity : Activity(), View.OnClickListener {
         animator3.start()
 
     }
+
     private fun recovery() {
         progress.visibility = View.GONE
         mInputLayout.visibility = View.VISIBLE
