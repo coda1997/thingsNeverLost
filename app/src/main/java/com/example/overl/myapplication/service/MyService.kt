@@ -35,7 +35,7 @@ interface MyService{
             @Field("location.latitude") latitude:Double,
             @Field("location.longitude") longitude:Double,
             @Field("location.description") localDscrip:String
-    ):Call<String>
+    ):Call<ResponseWithoutData>
 
     @POST("item/publishLost")
     @FormUrlEncoded

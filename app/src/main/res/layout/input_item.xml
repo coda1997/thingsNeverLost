@@ -65,6 +65,12 @@
                 android:padding="5dip"
                 android:textSize="16sp" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:background="#eeeeee" />
         <LinearLayout
             android:id="@+id/input_layout_date"
             android:layout_width="match_parent"
@@ -76,21 +82,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_description_blue_800_24dp" />
-
-            <DatePicker
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="true"
-                android:id="@+id/dp_item_date"
-                >
-            </DatePicker>
-            <TimePicker
+                android:id="@+id/tv_date"
+                android:text="@string/default_date"
+                android:layout_marginStart="20dp"
+                />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:background="#eeeeee" />
+        <LinearLayout
+            android:id="@+id/input_layout_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tp_item_time"
-                >
-
-            </TimePicker>
+                android:src="@drawable/ic_description_blue_800_24dp" />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_time"
+                android:layout_marginStart="20dp"
+                />
         </LinearLayout>
     </LinearLayout>
 

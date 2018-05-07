@@ -35,5 +35,20 @@ class ItemUtils{
                 }
             })
         }
+        fun createItemLost(baseUrl: String,title: String,description: String,userid: Int,time: String,location: Location,context: Activity){
+            val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
+            val service = retrofit.create(MyService::class.java)
+            val call = service.publishLost(description,time,userid,latitude = location.latitude,longitude = location.longitude,localDscrip = location.description)
+            call.enqueue(object :Callback<ResponseWithoutData>{
+                override fun onFailure(call: Call<ResponseWithoutData>?, t: Throwable?) {
+                    Log.d("create","fail"+t.toString())
+                    context.toast("fail")
+                }
+                override fun onResponse(call: Call<ResponseWithoutData>?, response: Response<ResponseWithoutData>?) {
+                    Log.d("create","succeed ${response?.body()}")
+                    context.finish()
+                }
+            })
+        }
     }
 }

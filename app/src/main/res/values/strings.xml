@@ -4,4 +4,6 @@
     <string name="main_page">首页</string>
     <string name="post_page">发布</string>
     <string name="my_page">我的</string>
+    <string name="default_date">2018-01-01</string>
+    <string name="default_time">12:00</string>
 </resources>

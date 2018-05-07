@@ -16,7 +16,7 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class PostFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        var view = inflater.inflate(R.layout.fragment_post, container, false)
+        val view = inflater.inflate(R.layout.fragment_post, container, false)
         initView(view)
         return view
     }
@@ -28,7 +28,7 @@ class PostFragment: Fragment() {
             startActivity<PostFindActivity>("userid" to 1)
         }
         postLost?.onClick {
-            startActivity<PostLostActivity>()
+            startActivity<PostLostActivity>("userid" to 1)
         }
 
     }

@@ -49,3 +49,8 @@ MobSDK {
     appSecret "7fcae59a62342e7e2759e9e397c82bdd"
     SMSSDK {}
 }
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
