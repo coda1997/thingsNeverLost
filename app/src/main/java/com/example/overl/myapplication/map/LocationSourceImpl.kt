@@ -37,6 +37,7 @@ class LocationSourceImpl(context : Context):TencentLocationListener, LocationSou
                 location.longitude = p0.longitude
                 location.accuracy = p0.accuracy
                 changedListener.onLocationChanged(location)
+                locationManager.removeUpdates(this)
             }
         }
     }
