@@ -39,7 +39,7 @@ interface MyService{
 
     @POST("item/publishLost")
     @FormUrlEncoded
-    fun publishLost(@Body userInfo: String):Call<String>
+    fun publishLost(@Field userInfo: String):Call<String>
 
     @GET("item/getLost")
     @FormUrlEncoded
