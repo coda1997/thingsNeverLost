@@ -19,7 +19,7 @@ class MapFragment() : SupportMapFragment(), Parcelable {
     }
 
     override fun onCreateView(layoutinflater: LayoutInflater, viewgroup: ViewGroup?, bundle: Bundle?): View? {
-        var view = super.onCreateView(layoutinflater, viewgroup, bundle)
+        val view = super.onCreateView(layoutinflater, viewgroup, bundle)
         init()
         return view
     }
