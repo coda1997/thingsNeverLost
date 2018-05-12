@@ -30,6 +30,12 @@ class PostFragment: Fragment() {
         postLost?.onClick {
             startActivity<PostLostActivity>("userid" to 1)
         }
+        view?.find<Button>(R.id.bt_all_find)?.onClick {
+            startActivity<AllItemActivity>()
+        }
+        view?.find<Button>(R.id.bt_all_lost)?.onClick {
+            startActivity<AllItemActivity>()
+        }
 
     }
 }

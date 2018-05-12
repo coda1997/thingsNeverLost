@@ -48,6 +48,9 @@
         <activity android:name=".post.PostLostActivity">
 
         </activity>
+        <activity android:name=".post.AllItemActivity">
+
+        </activity>
         <meta-data
             android:name="TencentMapSDK"
             android:value="MKQBZ-JHUWF-CYEJM-NK7Q6-GNYTK-Z3BIJ"/>
