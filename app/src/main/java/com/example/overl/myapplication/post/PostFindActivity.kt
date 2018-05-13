@@ -37,7 +37,7 @@ class PostFindActivity : AppCompatActivity() {
             val time = Calendar.getInstance()
             text = "${time.get(Calendar.HOUR_OF_DAY)}:${time.get(Calendar.MINUTE)}"
         }
-        val mockLocation = Location(0.0, 0.0, "no way")
+        val mockLocation = Location( 1,120.0, 120.0, "no way")
         find<LinearLayout>(R.id.input_layout_date).onClick {
             val dialog = DatePickerDialog(this@PostFindActivity, 0, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth -> date.text = "$year-$month-$dayOfMonth" }, 2018, 5, 7)
             dialog.show()
@@ -45,6 +45,7 @@ class PostFindActivity : AppCompatActivity() {
         find<LinearLayout>(R.id.input_layout_time).onClick {
             TimePickerDialog(this@PostFindActivity, 0, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute -> time.text = "$hourOfDay:$minute" }, 12, 0, true).show()
         }
+
         submit.onClick {
             val dateAndTime = "${date.text} ${time.text}"
             when {

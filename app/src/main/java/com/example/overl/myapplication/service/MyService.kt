@@ -43,8 +43,9 @@ interface MyService{
     @FormUrlEncoded
     fun publishLost(@Field("user") userInfo: String):Call<String>
 
-    @GET("item/getLost")
-
+    @GET("item/getFound")
     fun getFound(): Call<ResponseWithData>
+    @GET("item/getLost")
+    fun getLost(): Call<ResponseWithData>
 }
 

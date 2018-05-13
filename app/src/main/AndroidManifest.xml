@@ -48,7 +48,7 @@
         <activity android:name=".post.PostLostActivity">
 
         </activity>
-        <activity android:name=".post.AllItemActivity">
+        <activity android:name=".my.AllItemActivity">
 
         </activity>
         <meta-data

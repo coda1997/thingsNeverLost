@@ -1,7 +1,9 @@
 package com.example.overl.myapplication
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,13 +11,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.example.overl.myapplication.adapter.DateAdapter
 import com.example.overl.myapplication.bean.Item
 import com.example.overl.myapplication.bean.Location
 import com.example.overl.myapplication.bean.ResponseWithData
 import com.example.overl.myapplication.map.LocationSourceImpl
 import com.example.overl.myapplication.service.MyService
+import com.google.gson.GsonBuilder
 import com.tencent.tencentmap.mapsdk.maps.SupportMapFragment
 import com.tencent.tencentmap.mapsdk.maps.TencentMap
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng
@@ -23,15 +29,17 @@ import com.tencent.tencentmap.mapsdk.maps.model.Marker
 import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions
 import com.tencent.tencentmap.mapsdk.vector.utils.clustering.ClusterManager
 import com.tencent.tencentmap.mapsdk.vector.utils.clustering.view.DefaultClusterRenderer
+import org.jetbrains.anko.find
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class MapFragment() : SupportMapFragment(), Parcelable {
     @SuppressLint("ValidFragment")
-    constructor(parcel : Parcel) : this() {
+    constructor(parcel: Parcel) : this() {
     }
 
     override fun onCreateView(layoutinflater: LayoutInflater, viewgroup: ViewGroup?, bundle: Bundle?): View? {
@@ -44,51 +52,53 @@ class MapFragment() : SupportMapFragment(), Parcelable {
     constructor(context: Context) : this() {
         initSosoMap(context)
     }
+
     private fun init() {
         map.setLocationSource(LocationSourceImpl(context!!))
         map.isMyLocationEnabled = true
         val uiSetting = map.uiSettings
         uiSetting.isMyLocationButtonEnabled = true
-        val retrofit= Retrofit.Builder().baseUrl(resources.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
+        val retrofit = Retrofit.Builder().baseUrl(resources.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
         val call = retrofit.create(MyService::class.java).getFound()
-        call.enqueue(object :Callback<ResponseWithData>{
+        call.enqueue(object : Callback<ResponseWithData> {
             override fun onFailure(call: Call<ResponseWithData>?, t: Throwable?) {
-                Log.e("get item", t?.message)
+                Log.e("get item", t?.printStackTrace().toString())
             }
 
             override fun onResponse(call: Call<ResponseWithData>?, response: Response<ResponseWithData>?) {
-                val item = response!!.body()!!.data[0]
-                val location : Location? = item.location
-                val latLng = LatLng(location!!.latitude, item.location!!.longitude)
-                val marker : Marker = map.addMarker(MarkerOptions(latLng).
-                        title(item.description).snippet(location.latitude.toString() + location.longitude))
-                var tvTile: TextView
-                val infoWindowAdapter : TencentMap.InfoWindowAdapter = object : TencentMap.InfoWindowAdapter {
-                    override fun getInfoContents(p0: Marker?): View? {
-                        return null
-                    }
-
-                    override fun getInfoWindow(p0: Marker?): View? {
-                        if (p0 == marker) {
-                            val customInfoWindow : LinearLayout = View.inflate(context, R.layout.info_windows, null) as LinearLayout
-                            tvTile = customInfoWindow.findViewById(R.id.tv_title)
-                            tvTile.text = p0.title
-                            return customInfoWindow
-                        }
-                        return null
-                    }
-                }
-
-                map.setInfoWindowAdapter(infoWindowAdapter)
-
-                map.setOnMarkerClickListener{ m ->
-                    if (m.isInfoWindowShown)
-                        m.hideInfoWindow()
-                    else {
-                        m.showInfoWindow()
-                    }
-                    true
-                }
+                Log.d("get item", response?.body().toString())
+//                val item = response!!.body()!!.data[0]
+//                val location : Location? = item.location
+//                val latLng = LatLng(location!!.latitude, item.location!!.longitude)
+//                val marker : Marker = map.addMarker(MarkerOptions(latLng).
+//                        title(item.description).snippet(location.latitude.toString() + location.longitude))
+//                var tvTile: TextView
+//                val infoWindowAdapter : TencentMap.InfoWindowAdapter = object : TencentMap.InfoWindowAdapter {
+//                    override fun getInfoContents(p0: Marker?): View? {
+//                        return null
+//                    }
+//
+//                    override fun getInfoWindow(p0: Marker?): View? {
+//                        if (p0 == marker) {
+//                            val customInfoWindow : LinearLayout = View.inflate(context, R.layout.info_windows, null) as LinearLayout
+//                            tvTile = customInfoWindow.findViewById(R.id.tv_title)
+//                            tvTile.text = p0.title
+//                            return customInfoWindow
+//                        }
+//                        return null
+//                    }
+//                }
+//
+//                map.setInfoWindowAdapter(infoWindowAdapter)
+//
+//                map.setOnMarkerClickListener{ m ->
+//                    if (m.isInfoWindowShown)
+//                        m.hideInfoWindow()
+//                    else {
+//                        m.showInfoWindow()
+//                    }
+//                    true
+//                }
 
 
 //                val mClusterManager = ClusterManager<MyMapItem>(context, map)

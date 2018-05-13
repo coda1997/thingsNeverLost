@@ -15,18 +15,23 @@ import org.jetbrains.anko.find
 /**
  * Created by overl on 2018/5/12.
  */
-class ItemAdapter(val context: Context,val list: List<Item>) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class ItemAdapter(val context: Context,val list: MutableList<Item>) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     var inflater:LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemViewHolder(inflater.inflate(R.layout.item_cardview,null))
+    }
+    fun addData(item:Item){
+        list.add(item)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val h = holder as ItemViewHolder
         val item = list[position]
         Glide.with(context).load(item.picture?.url).placeholder(R.drawable.dog1).to(h.im)
-        h.content.text=item.description
+        if (item.description!=null){
+            h.content.text=item.description
+        }
     }
 
     override fun getItemCount(): Int {

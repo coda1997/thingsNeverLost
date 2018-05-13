@@ -39,7 +39,7 @@ class PostLostActivity :AppCompatActivity(){
             val time = Calendar.getInstance()
             text = "${time.get(Calendar.HOUR_OF_DAY)}:${time.get(Calendar.MINUTE)}"
         }
-        val mockLocation = Location(0.0, 0.0, "no way")
+        val mockLocation = Location(1,0.0, 0.0, "no way")
         find<LinearLayout>(R.id.input_layout_date).onClick {
             val dialog = DatePickerDialog(this@PostLostActivity, 0, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth -> date.text = "$year-$month-$dayOfMonth" }, 2018, 5, 7)
             dialog.show()

@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.overl.myapplication.R
 import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import org.jetbrains.anko.find
+import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * Created by overl on 2018/4/8.
@@ -28,6 +31,9 @@ class MyFragment: Fragment() {
         val headAvaImage = view?.find<ImageView>(R.id.h_head)
         Glide.with(context).load(R.drawable.dog1).bitmapTransform(BlurTransformation(context,25),CenterCrop(context)).into(headBlurImage)
         Glide.with(context).load(R.drawable.dog1).bitmapTransform(CropCircleTransformation(context)).into(headAvaImage)
+        view?.find<LinearLayout>(R.id.linear_layout_lost_item)?.onClick {
+            startActivity<AllItemActivity>("userid" to 1)
+        }
     }
 
 }

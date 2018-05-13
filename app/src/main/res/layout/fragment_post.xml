@@ -18,18 +18,18 @@
         android:layout_height="wrap_content"
         android:text="寻物启示"
         />
-    <Button
-        android:id="@+id/bt_all_find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="查看所有失物"
-        />
-    <Button
-        android:id="@+id/bt_all_lost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="查看所有寻物"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/bt_all_find"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="查看所有失物"-->
+        <!--/>-->
+    <!--<Button-->
+        <!--android:id="@+id/bt_all_lost"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="查看所有寻物"-->
+        <!--/>-->
 
 
 </LinearLayout>
