@@ -5,17 +5,25 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.*
 import com.example.overl.myapplication.R
 import com.example.overl.myapplication.bean.Location
+import com.example.overl.myapplication.bean.ResponseWithoutData
 import com.example.overl.myapplication.bean.location
 import com.example.overl.myapplication.map.LocationSourceImpl
+import com.example.overl.myapplication.service.MyService
 import com.tencent.tencentmap.mapsdk.maps.SupportMapFragment
 import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 
@@ -34,6 +42,7 @@ class PostFindActivity : AppCompatActivity() {
         val mapFragment : SupportMapFragment = supportFragmentManager.findFragmentById(R.id.publish_map) as SupportMapFragment
         val map = mapFragment.map
         map.setLocationSource(LocationSourceImpl(this))
+        map.isMyLocationEnabled = true
         map.setOnMapLongClickListener { latLng ->
             map.addMarker(MarkerOptions(latLng))
             loc = location {
@@ -85,12 +94,22 @@ class PostFindActivity : AppCompatActivity() {
     private var userid = 1
 
     private fun sumbitItem(title: String, description: String, date: String, loc: Location,i:Int) {
-        if (i==1){
-            ItemUtils.createItemFound(getString(R.string.base_url), title, description, userid, date, loc, this)
-        }else{
-            ItemUtils.createItemLost(getString(R.string.base_url), title, description, userid, date, loc, this)
-
+        toast("发布成功")
+        val retrofit = Retrofit.Builder().baseUrl(resources.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
+        val service = retrofit.create(MyService::class.java)
+        val call = if (i==0){service.publishFound(description,date,userid,latitude = loc.latitude,longitude = loc.longitude,localDscrip = loc.description)}else{
+            service.publishLost(description,date,userid,latitude = loc.latitude,longitude = loc.longitude,localDscrip = loc.description)
         }
+        call.enqueue(object : Callback<ResponseWithoutData> {
+            override fun onFailure(call: Call<ResponseWithoutData>?, t: Throwable?) {
+                Log.d("create","fail"+t.toString())
+                //   context?.toast("fail")
+            }
+
+            override fun onResponse(call: Call<ResponseWithoutData>?, response: Response<ResponseWithoutData>?) {
+                Log.d("create","succeed ${response?.body()}")
+            }
+        })
     }
 
 

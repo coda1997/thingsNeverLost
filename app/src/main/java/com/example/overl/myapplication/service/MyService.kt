@@ -28,7 +28,7 @@ interface MyService{
                      @Field("location.description") localDscrip:String
                      ):Call<ResponseWithoutData>
 
-    @POST
+    @POST("item/publishLost")
     @FormUrlEncoded
     fun publishLost(
             @Field("description") description:String,

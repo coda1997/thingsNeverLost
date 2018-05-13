@@ -83,14 +83,20 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
     private fun initLostItem(lostItemList : List<Item>?) {
         var latitude = 30.3141
         var longitude = 114.217
-        lostItemList?.filter{ it.location != null }?.forEach{
-            Log.d("marker", "success")
+        (0..3).forEach({
             map.addMarker(MarkerOptions(LatLng(latitude,longitude))
-                    .title(it.description).snippet(it.description))
+                    .title("item"+it.toString()).snippet(it.toString()))
             latitude += 0.01
             longitude += 0.01
-            Log.d("marker", "success")
-        }
+        })
+//        lostItemList?.filter{ it.location != null }?.forEach{
+//            Log.d("marker", "success")
+//            map.addMarker(MarkerOptions(LatLng(latitude,longitude))
+//                    .title(it.description).snippet(it.description))
+//            latitude += 0.01
+//            longitude += 0.01
+//            Log.d("marker", "success")
+//        }
     }
 
     private fun setInfoWindow() {
