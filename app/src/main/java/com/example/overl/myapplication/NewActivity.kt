@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.Window
 import android.widget.LinearLayout
+import android.support.v7.widget.SearchView
 import com.example.overl.myapplication.map.*
 import com.example.overl.myapplication.my.MyFragment
 import com.example.overl.myapplication.post.PostFindActivity
@@ -30,6 +31,7 @@ class NewActivity:FragmentActivity(){
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_new)
         initFragment()
+        initView()
         supportFragmentManager.selectFragment(myFragment,mapFragment)
         find<LinearLayout>(R.id.layout_map).onClick {
             supportFragmentManager.selectFragment(myFragment,mapFragment)
@@ -41,6 +43,23 @@ class NewActivity:FragmentActivity(){
             supportFragmentManager.selectFragment(mapFragment,myFragment)
         }
     }
+
+    private fun initView() {
+        val search = find<SearchView>(R.id.search_view)
+        search.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                startActivity<ItemActivity>("key" to query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
+    }
+
     private fun initFragment() {
         container=findViewById(R.id.layout_fragment)
         mapFragment= MapFragment(this)

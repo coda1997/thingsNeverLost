@@ -51,6 +51,9 @@
         <activity android:name=".my.AllItemActivity">
 
         </activity>
+        <activity android:name=".ItemActivity">
+
+        </activity>
         <meta-data
             android:name="TencentMapSDK"
             android:value="MKQBZ-JHUWF-CYEJM-NK7Q6-GNYTK-Z3BIJ"/>
