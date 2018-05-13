@@ -49,6 +49,7 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
         map.isMyLocationEnabled = true
         val uiSetting = map.uiSettings
         uiSetting.isMyLocationButtonEnabled = true
+
         val retrofit = Retrofit.Builder().baseUrl(resources.getString(R.string.base_url)).addConverterFactory(GsonConverterFactory.create()).build()
         val call = retrofit.create(MyService::class.java).getFound()
         call.enqueue(object : Callback<ResponseWithData> {

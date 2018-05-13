@@ -1,6 +1,7 @@
 package com.example.overl.myapplication.post
 
 import android.app.DatePickerDialog
+import android.app.FragmentManager
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,6 +11,11 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.overl.myapplication.R
 import com.example.overl.myapplication.bean.Location
+import com.example.overl.myapplication.map.LocationSourceImpl
+import com.tencent.tencentmap.mapsdk.maps.MapView
+import com.tencent.tencentmap.mapsdk.maps.SupportMapFragment
+import com.tencent.tencentmap.mapsdk.maps.model.LatLng
+import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.support.v4.startActivity
@@ -28,6 +34,7 @@ class PostFragment: Fragment() {
     }
 
     private fun initView(view: View?) {
+
         val submit = view?.find<Button>(R.id.bt_post_submit)
         val cancel = view?.find<Button>(R.id.bt_post_cancel)
         val title = view?.find<EditText>(R.id.edit_item_title)

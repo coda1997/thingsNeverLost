@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <ImageView
+    <fragment
+        android:id="@+id/publish_map"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-
-        android:src="@drawable/arrow"
-        />
+        android:layout_height="250dp"
+        class="com.tencent.tencentmap.mapsdk.maps.SupportMapFragment"/>
 
 
 

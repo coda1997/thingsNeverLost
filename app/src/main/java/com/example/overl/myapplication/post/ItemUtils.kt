@@ -27,7 +27,7 @@ class ItemUtils{
             call.enqueue(object :Callback<ResponseWithoutData>{
                 override fun onFailure(call: Call<ResponseWithoutData>?, t: Throwable?) {
                     Log.d("create","fail"+t.toString())
-                    context?.toast("fail")
+                 //   context?.toast("fail")
                 }
 
                 override fun onResponse(call: Call<ResponseWithoutData>?, response: Response<ResponseWithoutData>?) {
@@ -43,7 +43,7 @@ class ItemUtils{
             call.enqueue(object :Callback<ResponseWithoutData>{
                 override fun onFailure(call: Call<ResponseWithoutData>?, t: Throwable?) {
                     Log.d("create","fail"+t.toString())
-                    context?.toast("fail")
+                 //   context?.toast("fail")
                 }
                 override fun onResponse(call: Call<ResponseWithoutData>?, response: Response<ResponseWithoutData>?) {
                     Log.d("create","succeed ${response?.body()}")
