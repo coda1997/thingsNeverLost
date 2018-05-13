@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
 import android.support.annotation.UiThread
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.overl.myapplication.bean.Item
 import com.example.overl.myapplication.bean.ResponseWithData
 import com.example.overl.myapplication.map.LocationSourceImpl
@@ -82,9 +85,8 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
         var latitude = 30.3141
         var longitude = 114.217
         lostItemList?.filter{ it.location != null }?.forEach{
-            val loc = it.location!!
             Log.d("marker", "success")
-            val marker = map.addMarker(MarkerOptions(LatLng(latitude,longitude))
+            map.addMarker(MarkerOptions(LatLng(latitude,longitude))
                     .title(it.description).snippet(it.description))
             latitude += 0.01
             longitude += 0.01
@@ -94,13 +96,15 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
 
     private fun setInfoWindow() {
         var tvTile: TextView
+        var imgView : ImageView
         val infoWindowAdapter : TencentMap.InfoWindowAdapter = object : TencentMap.InfoWindowAdapter {
             override fun getInfoContents(p0: Marker?): View? {
                 return null
             }
             override fun getInfoWindow(p0: Marker?): View? {
-                val customInfoWindow : LinearLayout = View.inflate(context, R.layout.item_details, null) as LinearLayout
+                val customInfoWindow = View.inflate(context, R.layout.item_details, null) as LinearLayout
                 tvTile = customInfoWindow.findViewById(R.id.item_desc)
+               // Glide.with(context).load("#").placeholder(resources.getDrawable(R.drawable.dog1)).to(imgView)
                 tvTile.text = p0?.snippet
                 return customInfoWindow
             }
