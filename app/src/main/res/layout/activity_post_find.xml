@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        android:src="@drawable/arrow"
+        />
 
     <include
         layout="@layout/input_item" />
@@ -14,7 +20,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="提交"
+            android:text="发布寻物启事"
             android:id="@+id/bt_post_submit"
 
             android:layout_weight="1"
@@ -22,7 +28,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="取消"
+            android:text="发布失物招领"
             android:id="@+id/bt_post_cancel"
 
             android:layout_weight="1"

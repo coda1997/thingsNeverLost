@@ -65,6 +65,7 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
                 }
                 setInfoWindow()
                 //set click listener
+
                 map.setOnMarkerClickListener{ m ->
                     if (m.isInfoWindowShown)
                         m.hideInfoWindow()
@@ -84,7 +85,7 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
             val loc = it.location!!
             Log.d("marker", "success")
             val marker = map.addMarker(MarkerOptions(LatLng(latitude,longitude))
-                    .title(it.description).snippet(latitude.toString() + longitude))
+                    .title(it.description).snippet(it.description))
             latitude += 0.01
             longitude += 0.01
             Log.d("marker", "success")
@@ -97,13 +98,13 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
             override fun getInfoContents(p0: Marker?): View? {
                 return null
             }
-
             override fun getInfoWindow(p0: Marker?): View? {
                 val customInfoWindow : LinearLayout = View.inflate(context, R.layout.item_details, null) as LinearLayout
                 tvTile = customInfoWindow.findViewById(R.id.item_desc)
-                tvTile.text = "hello world"
+                tvTile.text = p0?.snippet
                 return customInfoWindow
             }
+
         }
         map.setInfoWindowAdapter(infoWindowAdapter)
     }

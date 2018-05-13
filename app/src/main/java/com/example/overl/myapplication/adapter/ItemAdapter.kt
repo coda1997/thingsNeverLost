@@ -19,10 +19,11 @@ class ItemAdapter(val context: Context,val list: MutableList<Item>) :RecyclerVie
     var inflater:LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ItemViewHolder(inflater.inflate(R.layout.item_cardview,null))
+        return ItemViewHolder(inflater.inflate(R.layout.item_cardview,parent,false))
     }
     fun addData(item:Item){
         list.add(item)
+        notifyItemInserted(list.size-1)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

@@ -3,21 +3,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     >
-    <Button
-        android:id="@+id/bt_post_find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="失物登记"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/red"
+        android:layout_margin="8dp"
+        android:elevation="5dp"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:layout_margin="8dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="寻物"
+                android:textColor="@color/white"
+                android:textSize="80sp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:layout_margin="8dp"
+            android:elevation="5dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="启示"
+                android:textColor="@color/white"
+                android:textSize="80sp"
+                />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/bt_post_lost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="寻物启示"
-        />
+    </LinearLayout>
+
+
+    <!--<Button-->
+        <!--android:id="@+id/bt_post_find"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="失物登记"-->
+        <!--/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/bt_post_lost"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="寻物启示"-->
+        <!--/>-->
     <!--<Button-->
         <!--android:id="@+id/bt_all_find"-->
         <!--android:layout_width="wrap_content"-->
