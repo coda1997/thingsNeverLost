@@ -1,5 +1,7 @@
 package com.example.overl.myapplication.service
 
+import com.example.overl.myapplication.bean.Item
+import com.example.overl.myapplication.bean.ResponseWithData
 import com.example.overl.myapplication.bean.ResponseWithoutData
 import retrofit2.Call
 import retrofit2.http.*
@@ -39,10 +41,10 @@ interface MyService{
 
     @POST("item/publishLost")
     @FormUrlEncoded
-    fun publishLost(@Field userInfo: String):Call<String>
+    fun publishLost(@Field("user") userInfo: String):Call<String>
 
     @GET("item/getLost")
-    @FormUrlEncoded
-    fun getFound():Call<String>
+
+    fun getFound(): Call<ResponseWithData>
 }
 

@@ -8,3 +8,5 @@ fun User.loginInfo():String{
 }
 
 data class ResponseWithoutData(val code:Int, val msg:String)
+
+data class ResponseWithData(val code:Int, val msg:String, val data:List<Item>)

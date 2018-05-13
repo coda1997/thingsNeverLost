@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:12.0.1'
     implementation files('libs/TencentLocationSDK_v6.1.2_r1df4baaa_170627_1056.jar')
     implementation files('libs/tencent_map_sdk_4.0.8.1.ba92bc6.jar')
+    implementation files('libs/TencentmapVectorUtils_v1.0.2.3ed9c2b.jar')
 }
 
 // 添加插件

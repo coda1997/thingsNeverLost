@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.Window
 import android.widget.LinearLayout
-import com.example.overl.myapplication.map.MapFragment
+import com.example.overl.myapplication.map.*
 import com.example.overl.myapplication.my.MyFragment
 import com.example.overl.myapplication.post.PostFragment
 import org.jetbrains.anko.*

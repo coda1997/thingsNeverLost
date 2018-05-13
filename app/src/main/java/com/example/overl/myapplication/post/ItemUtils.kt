@@ -35,6 +35,7 @@ class ItemUtils{
                 }
             })
         }
+
         fun createItemLost(baseUrl: String,title: String,description: String,userid: Int,time: String,location: Location,context: Activity){
             val retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
             val service = retrofit.create(MyService::class.java)

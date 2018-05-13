@@ -8,6 +8,7 @@ import java.util.*
  */
 data class Item(var id:Int?=null,
                 var description:String?=null,
+                var title:String?=null,
                 var time:Date?=null,
                 var picture:Picture?=null,
                 var location:Location?=null)
