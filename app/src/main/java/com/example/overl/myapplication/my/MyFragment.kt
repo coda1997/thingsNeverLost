@@ -34,6 +34,8 @@ class MyFragment: Fragment() {
         view?.find<LinearLayout>(R.id.linear_layout_lost_item)?.onClick {
             startActivity<AllItemActivity>("userid" to 1)
         }
+
     }
+
 
 }

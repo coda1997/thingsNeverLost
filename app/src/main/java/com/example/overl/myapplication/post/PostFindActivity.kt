@@ -10,6 +10,7 @@ import com.example.overl.myapplication.R
 import com.example.overl.myapplication.bean.Location
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -51,18 +52,28 @@ class PostFindActivity : AppCompatActivity() {
             when {
                 title.text.toString() == "" -> toast("请输入标题")
                 description.text.toString() =="" -> toast("请输入详情")
-                else -> sumbitItem(title.text.toString(), description.text.toString(), dateAndTime, mockLocation)
+                else -> sumbitItem(title.text.toString(), description.text.toString(), dateAndTime, mockLocation,0)
             }
         }
         cancel.onClick {
-            finish()
-        }
+            val dateAndTime = "${date?.text} ${time?.text}"
+            when {
+                title?.text.toString() == "" -> toast("请输入标题")
+                description?.text.toString() =="" -> toast("请输入详情")
+                else -> sumbitItem(title?.text.toString(), description?.text.toString(), dateAndTime, mockLocation,1)
+            }        }
 
     }
 
     private var userid = 1
-    private fun sumbitItem(title: String, description: String, date: String, loc: Location) {
-        ItemUtils.createItemFound(getString(R.string.base_url), title, description, userid, date, loc, this)
+
+    private fun sumbitItem(title: String, description: String, date: String, loc: Location,i:Int) {
+        if (i==1){
+            ItemUtils.createItemFound(getString(R.string.base_url), title, description, userid, date, loc, this)
+        }else{
+            ItemUtils.createItemLost(getString(R.string.base_url), title, description, userid, date, loc, this)
+
+        }
     }
 
 

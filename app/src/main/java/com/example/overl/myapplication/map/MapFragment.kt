@@ -37,12 +37,10 @@ class MapFragment() : com.tencent.tencentmap.mapsdk.maps.SupportMapFragment(), P
         init()
         return view
     }
-
     @SuppressLint("ValidFragment")
     constructor(context: Context) : this() {
         initSosoMap(context)
     }
-
     private fun init() {
         map.setLocationSource(LocationSourceImpl(context!!))
         map.isMyLocationEnabled = true
